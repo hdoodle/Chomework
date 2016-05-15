@@ -12,24 +12,25 @@ struct student{         /*结构体类型*/
 };
 void grade(struct student *stu){ /*实现总评成绩计算和等级统计*/
 	float scoreall = 0,temp = 0;        //总评成绩
-	char grade = 0;            //等级统计
+	char gradescore = 0;            //等级统计
 	scoreall = (((*stu).usualScore) * 0.3 )+ (((*stu).interimScore) * 0.3) + (((*stu).finalScore) * 0.4);  //总评成绩计算
 	if (scoreall <= 100 && scoreall >= 90) {
-		grade = 'A';
+		gradescore = 'A';
 	} else if (scoreall <= 89 && scoreall >= 80) {
-		grade = 'B'; 
+		gradescore = 'B'; 
 	} else if (scoreall <= 79 && scoreall >= 70) {
-		grade = 'C';
+		gradescore = 'C';
 	} else if (scoreall <= 69 && scoreall >= 60) {
-		grade = 'D';
+		gradescore = 'D';
 	} else if (scoreall <= 59 && scoreall >= 0) {
-		grade = 'E';
+		gradescore = 'E';
 	}
 	(*stu).overallScore = scoreall;
-	(*stu).overallGrade = grade;
+	(*stu).overallGrade = gradescore;
+	//printf("%f,%c\n",(*stu).overallScore,(*stu).overallGrade);
+	//（3）用函数grade()实现对该班级每个学生的总评成绩计算并进行等级统计：
+    //90-100分为“A”、80-89分为“B”、70-79分为“C”、60-69分为“D”、0-59分为“E”；
 }
-（3）用函数grade()实现对该班级每个学生的总评成绩计算并进行等级统计：
-90-100分为“A”、80-89分为“B”、70-79分为“C”、60-69分为“D”、0-59分为“E”；
 main(){
 	int count=0;
 	struct student info[30];
@@ -38,18 +39,21 @@ main(){
 	while(count < 30){                   //问题点2，无法退出循环，解决方案：超过循环统计范围
 		printf("(strcmp(info[%d].name,\"-1\"): %d\n",count, strcmp(info[1].name,"-1"));
 		printf("Name:");
-		scanf("%s",&info[1].name);      //问题点1，类型不符，解决方案：%c被替换为%s
-		if (strcmp(info[1].name,"-1") != 0) {      //strcmp判断文本是否相等，当相等时返回0
+		scanf("%s",info[count].name);      //问题点1，类型不符，解决方案：%c被替换为%s
+		if (strcmp(info[count].name,"-1") != 0) {      //strcmp判断文本是否相等，当相等时返回0
 			printf("Number:");
-			scanf("%d",&info[1].id);
+			scanf("%d",&info[count].id);
 			printf("usualScore:");
-			scanf("%d",&info[1].usualScore);
+			scanf("%d",&info[count].usualScore);
 			printf("interimScore:");
-			scanf("%d",&info[1].interimScore);
+			scanf("%d",&info[count].interimScore);
 			printf("finalScore:");
-			scanf("%d",&info[1].finalScore);
-			count++;
+			scanf("%d",&info[count].finalScore);
+			
 			printf("%d",count);
+			grade(p+count);
+			printf("*****%f,%c*****",info[count].overallScore,info[count].overallGrade);
+			count++;
 		} else {
 			count = 30;                            //当相等时，超出count循环变量范围，退出循环
 		}
