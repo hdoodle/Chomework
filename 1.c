@@ -27,7 +27,7 @@ void grade(struct student *stu){ /*实现总评成绩计算和等级统计*/
 	}
 	(*stu).overallScore = scoreall;
 	(*stu).overallGrade = gradescore;
-	//printf("%f,%c\n",(*stu).overallScore,(*stu).overallGrade);
+	//printf("%f,%c\n",(*stu).overallScore,(*stu).overallGrade);      //调试输出指针指向内容
 	//（3）用函数grade()实现对该班级每个学生的总评成绩计算并进行等级统计：
     //90-100分为“A”、80-89分为“B”、70-79分为“C”、60-69分为“D”、0-59分为“E”；
 }
@@ -39,7 +39,7 @@ main(){
 	while(count < 30){                   //问题点2，无法退出循环，解决方案：超过循环统计范围
 		printf("(strcmp(info[%d].name,\"-1\"): %d\n",count, strcmp(info[1].name,"-1"));
 		printf("Name:");
-		scanf("%s",info[count].name);      //问题点1，类型不符，解决方案：%c被替换为%s
+		scanf("%s",info[count].name);      //问题点1，类型不符，解决方案：%c被替换为%s  //问题点2，info[count].name已经为地址，不需要加&符号。
 		if (strcmp(info[count].name,"-1") != 0) {      //strcmp判断文本是否相等，当相等时返回0
 			printf("Number:");
 			scanf("%d",&info[count].id);
@@ -53,7 +53,7 @@ main(){
 			printf("%d",count);
 			grade(p+count);
 			printf("*****%f,%c*****",info[count].overallScore,info[count].overallGrade);
-			count++;
+			count++;                      //问题点3，不能++在打印printf()前面，否则会打印下一条内容导致数据显示错误。
 		} else {
 			count = 30;                            //当相等时，超出count循环变量范围，退出循环
 		}
