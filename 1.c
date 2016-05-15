@@ -2,18 +2,19 @@
 #include<string.h>
 #define NUM 30   /*班级人数宏定义，使用链表可动态开辟存储空间，无需此项设置*/
 struct student{         /*结构体类型*/
-    char name[15];
-    int id;
-    int usualScore;
-    int interimScore;
-    int finalScore;
-    float overallScore;
-    char overallGrade;
+    char name[15];      //姓名
+    int id;             //学号
+    int usualScore;     //平时分数
+    int interimScore;   //期中分数
+    int finalScore;     //期末分数
+    float overallScore; //总评成绩
+    char overallGrade;  //总评分级
 };
 void grade(struct student *stu){ /*实现总评成绩计算和等级统计*/
 	float scoreall = 0,temp = 0;        //总评成绩
 	char grade = 0;            //等级统计
-	scoreall = stu.usualScore ;
+	scoreall = (((*stu).usualScore) * 0.3 )+ (((*stu).interimScore) * 0.3) + (((*stu).finalScore) * 0.4);  //总评成绩计算
+	
 }
 main(){
 	int count=0;
