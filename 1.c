@@ -14,8 +14,22 @@ void grade(struct student *stu){ /*实现总评成绩计算和等级统计*/
 	float scoreall = 0,temp = 0;        //总评成绩
 	char grade = 0;            //等级统计
 	scoreall = (((*stu).usualScore) * 0.3 )+ (((*stu).interimScore) * 0.3) + (((*stu).finalScore) * 0.4);  //总评成绩计算
-	
+	if (scoreall <= 100 && scoreall >= 90) {
+		grade = 'A';
+	} else if (scoreall <= 89 && scoreall >= 80) {
+		grade = 'B'; 
+	} else if (scoreall <= 79 && scoreall >= 70) {
+		grade = 'C';
+	} else if (scoreall <= 69 && scoreall >= 60) {
+		grade = 'D';
+	} else if (scoreall <= 59 && scoreall >= 0) {
+		grade = 'E';
+	}
+	(*stu).overallScore = scoreall;
+	(*stu).overallGrade = grade;
 }
+（3）用函数grade()实现对该班级每个学生的总评成绩计算并进行等级统计：
+90-100分为“A”、80-89分为“B”、70-79分为“C”、60-69分为“D”、0-59分为“E”；
 main(){
 	int count=0;
 	struct student info[30];
