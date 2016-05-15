@@ -32,7 +32,7 @@ void grade(struct student *stu){ /*实现总评成绩计算和等级统计*/
     //90-100分为“A”、80-89分为“B”、70-79分为“C”、60-69分为“D”、0-59分为“E”；
 }
 main(){
-	int count=0;
+	int count=0,numberall=0;
 	struct student info[30];
 	struct student *p;
 	p = &info;
@@ -54,6 +54,7 @@ main(){
 			grade(p+count);
 			printf("*****%f,%c*****",info[count].overallScore,info[count].overallGrade);
 			count++;                      //问题点3，不能++在打印printf()前面，否则会打印下一条内容导致数据显示错误。
+			numberall = count;
 		} else {
 			count = 30;                            //当相等时，超出count循环变量范围，退出循环
 		}
@@ -65,10 +66,14 @@ main(){
   /*输出学生的姓名、学号、平时、期中、期末、总评成绩和等级*/
 /*输出每个等级的学生人数*/
 	//输出部分开始
+	numberall--;
 	printf("=====Score Form=====\n");
-	printf("Name   id   usualScore interimScore finalScore overallScore overallGrade");
-	for (count = 0; count <= NUM; count++){
-		printf("%s     %d     %d     %d     %d     %d     %c\n",info[count].name,info[count].id,info[count].usualScore,\
+	printf("Name   id   usualScore interimScore finalScore overallScore overallGrade\n");
+	printf("\n%d,%d\n",count,numberall);
+	for (count = 0; count <= numberall; count++){
+		printf("%d,%d",count,numberall);
+		printf("%s     %d     %d     %d     %d     %f     %c\n",info[count].name,info[count].id,info[count].usualScore,\
 		info[count].interimScore,info[count].finalScore,info[count].overallScore,info[count].overallGrade);
+
 	}
 }
