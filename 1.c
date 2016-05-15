@@ -64,4 +64,11 @@ main(){
   //}
   /*输出学生的姓名、学号、平时、期中、期末、总评成绩和等级*/
 /*输出每个等级的学生人数*/
+	//输出部分开始
+	printf("=====Score Form=====\n");
+	printf("Name   id   usualScore interimScore finalScore overallScore overallGrade");
+	for (count = 0; count <= NUM; count++){
+		printf("%s     %d     %d     %d     %d     %d     %c\n",info[count].name,info[count].id,info[count].usualScore,\
+		info[count].interimScore,info[count].finalScore,info[count].overallScore,info[count].overallGrade);
+	}
 }
