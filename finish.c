@@ -64,7 +64,7 @@ main(){
 	printf("姓名      学号      平时成绩  期中成绩  期末成绩  总评成绩  总评成绩等级\n");
 	printf("------------------------------------------------------------------------\n");
 	for (count = 0; count <= numberall; count++){
-		printf("%-10s%-10d%-10d%-10d%-10d%-10.2f%c\n",info[count].name,info[count].id,info[count].usualScore,\
+		printf("%-10s%-12d%-10d%-10d%-10d%-10.2f%c\n",info[count].name,info[count].id,info[count].usualScore,\
 		info[count].interimScore,info[count].finalScore,info[count].overallScore,info[count].overallGrade);
 	}
 	printf("------------------------------------------------------------------------\n");
