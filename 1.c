@@ -16,13 +16,13 @@ void grade(struct student *stu){ /*实现总评成绩计算和等级统计*/
 	scoreall = (((*stu).usualScore) * 0.3 )+ (((*stu).interimScore) * 0.3) + (((*stu).finalScore) * 0.4);  //总评成绩计算
 	if (scoreall <= 100 && scoreall >= 90) {
 		gradescore = 'A';
-	} else if (scoreall <= 89 && scoreall >= 80) {
+	} else if (scoreall < 90 && scoreall >= 80) {
 		gradescore = 'B'; 
-	} else if (scoreall <= 79 && scoreall >= 70) {
+	} else if (scoreall < 80 && scoreall >= 70) {
 		gradescore = 'C';
-	} else if (scoreall <= 69 && scoreall >= 60) {
+	} else if (scoreall < 70 && scoreall >= 60) {
 		gradescore = 'D';
-	} else if (scoreall <= 59 && scoreall >= 0) {
+	} else if (scoreall < 60 && scoreall >= 0) {
 		gradescore = 'E';
 	}
 	(*stu).overallScore = scoreall;
@@ -32,7 +32,7 @@ void grade(struct student *stu){ /*实现总评成绩计算和等级统计*/
     //90-100分为“A”、80-89分为“B”、70-79分为“C”、60-69分为“D”、0-59分为“E”；
 }
 main(){
-	int count=0,numberall=0;
+	int count=0,numberall=0,printgrade[5]={0};
 	struct student info[30];
 	struct student *p;
 	p = &info;
@@ -68,12 +68,35 @@ main(){
 	//输出部分开始
 	numberall--;
 	printf("=====Score Form=====\n");
-	printf("Name   id   usualScore interimScore finalScore overallScore overallGrade\n");
+	printf("姓名      学号        平时成绩  期中成绩  期末成绩  总评成绩  总评成绩等级\n");
 	printf("\n%d,%d\n",count,numberall);
 	for (count = 0; count <= numberall; count++){
-		printf("%d,%d",count,numberall);
-		printf("%s     %d     %d     %d     %d     %f     %c\n",info[count].name,info[count].id,info[count].usualScore,\
+		//printf("%d,%d",count,numberall);
+		printf("%-10s%-10d%-10d%-10d%-10d%-10.2f%c\n",info[count].name,info[count].id,info[count].usualScore,\
 		info[count].interimScore,info[count].finalScore,info[count].overallScore,info[count].overallGrade);
-
 	}
+	count=0;
+	printf("循环输出1%d\n",printgrade[4]);
+	while(count <= numberall) {
+		if (info[count].overallScore <= 100 && info[count].overallScore >= 90) {
+			printgrade[0]++;
+		} else if (info[count].overallScore < 90 && info[count].overallScore >= 80) {
+			printgrade[1]++;
+		} else if (info[count].overallScore < 80 && info[count].overallScore >= 70) {
+			printgrade[2]++;
+		} else if (info[count].overallScore < 70 && info[count].overallScore >= 60) {
+			printgrade[3]++;
+		} else if (info[count].overallScore < 60 && info[count].overallScore >= 0) {
+			printf("循环输出%5d\n",printgrade[4]);
+			printgrade[4]++;
+		}
+	count++;
+	}
+	printf("------------");
+	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[0]);
+	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[1]);
+	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[2]);
+	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[3]);
+	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[4]);
+	printf("------------");
 }
