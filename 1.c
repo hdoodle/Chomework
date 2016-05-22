@@ -36,23 +36,26 @@ main(){
 	struct student info[30];
 	struct student *p;
 	p = &info;
+	printf("学生成绩汇总与统计\n");
+	printf("输入“-1”退出\n\n");
 	while(count < 30){                   //问题点2，无法退出循环，解决方案：超过循环统计范围
-		printf("(strcmp(info[%d].name,\"-1\"): %d\n",count, strcmp(info[1].name,"-1"));
-		printf("Name:");
+		//printf("(strcmp(info[%d].name,\"-1\"): %d\n",count, strcmp(info[1].name,"-1"));
+		printf("请输入第%d位同学成绩：\n",count+1);
+		printf("姓名：");
 		scanf("%s",info[count].name);      //问题点1，类型不符，解决方案：%c被替换为%s  //问题点2，info[count].name已经为地址，不需要加&符号。
 		if (strcmp(info[count].name,"-1") != 0) {      //strcmp判断文本是否相等，当相等时返回0
-			printf("Number:");
+			printf("学号：");
 			scanf("%d",&info[count].id);
-			printf("usualScore:");
+			printf("平时成绩：");
 			scanf("%d",&info[count].usualScore);
-			printf("interimScore:");
+			printf("期中成绩：");
 			scanf("%d",&info[count].interimScore);
-			printf("finalScore:");
+			printf("期末成绩：");
 			scanf("%d",&info[count].finalScore);
-			
-			printf("%d",count);
+			printf("\n");
+			//printf("%d",count);
 			grade(p+count);
-			printf("*****%f,%c*****",info[count].overallScore,info[count].overallGrade);
+			//printf("*****%f,%c*****",info[count].overallScore,info[count].overallGrade);
 			count++;                      //问题点3，不能++在打印printf()前面，否则会打印下一条内容导致数据显示错误。
 			numberall = count;
 		} else {
@@ -67,16 +70,19 @@ main(){
 /*输出每个等级的学生人数*/
 	//输出部分开始
 	numberall--;
-	printf("=====Score Form=====\n");
-	printf("姓名      学号        平时成绩  期中成绩  期末成绩  总评成绩  总评成绩等级\n");
-	printf("\n%d,%d\n",count,numberall);
+	printf("\n");
+	printf("------------------------------------------------------------------------\n");
+	printf("姓名      学号      平时成绩  期中成绩  期末成绩  总评成绩  总评成绩等级\n");
+	printf("------------------------------------------------------------------------\n");
+	//printf("\n%d,%d\n",count,numberall);
 	for (count = 0; count <= numberall; count++){
 		//printf("%d,%d",count,numberall);
 		printf("%-10s%-10d%-10d%-10d%-10d%-10.2f%c\n",info[count].name,info[count].id,info[count].usualScore,\
 		info[count].interimScore,info[count].finalScore,info[count].overallScore,info[count].overallGrade);
 	}
+	printf("------------------------------------------------------------------------\n");
 	count=0;
-	printf("循环输出1%d\n",printgrade[4]);
+	//printf("循环输出1%d\n",printgrade[4]);
 	while(count <= numberall) {
 		if (info[count].overallScore <= 100 && info[count].overallScore >= 90) {
 			printgrade[0]++;
@@ -87,16 +93,17 @@ main(){
 		} else if (info[count].overallScore < 70 && info[count].overallScore >= 60) {
 			printgrade[3]++;
 		} else if (info[count].overallScore < 60 && info[count].overallScore >= 0) {
-			printf("循环输出%5d\n",printgrade[4]);
+			//printf("循环输出%5d\n",printgrade[4]);
 			printgrade[4]++;
 		}
 	count++;
 	}
-	printf("------------");
-	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[0]);
-	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[1]);
-	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[2]);
-	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[3]);
-	printf("成绩等级为A(90-100)的人数为：%5d\n",printgrade[4]);
-	printf("------------");
+	printf("\n");
+	printf("------------------------------------------------------------------------\n");
+	printf("成绩等级为A(90-100)的人数为：%d\n",printgrade[0]);
+	printf("成绩等级为B(80- 89)的人数为：%d\n",printgrade[1]);
+	printf("成绩等级为C(70- 79)的人数为：%d\n",printgrade[2]);
+	printf("成绩等级为D(60- 69)的人数为：%d\n",printgrade[3]);
+	printf("成绩等级为E(0 - 59)的人数为：%d\n",printgrade[4]);
+	printf("------------------------------------------------------------------------\n");
 }
